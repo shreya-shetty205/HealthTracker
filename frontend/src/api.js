@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // ── Axios instance ─────────────────────────────────────────
 const api = axios.create({
-  baseURL: '/api',
+  baseURL: `${import.meta.env.VITE_API_URL}/api`,
 });
 
 // Attach token to every request automatically
@@ -26,7 +26,7 @@ export const deleteMeal = (id)   => api.delete(`/delete-meal/${id}`);
 // ── Health Score ───────────────────────────────────────────
 export const getHealthScore = () => api.get('/health-score');
 
-// ── Insights (NEW) ─────────────────────────────────────────
+// ── Insights ───────────────────────────────────────────────
 export const getInsightsAPI = () => api.get('/insights');
 
 export default api;
