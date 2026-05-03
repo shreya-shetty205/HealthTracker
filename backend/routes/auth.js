@@ -1,21 +1,11 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 const User = require('../models/User');
 
-// ── Nodemailer transporter ─────────────────────────────────────────────────────
-// Set these in your .env file:
-//   EMAIL_USER=your-gmail@gmail.com
-//   EMAIL_PASS=your-gmail-app-password   ← use an App Password, not your real password
-//   CLIENT_URL=http://localhost:3000      ← your frontend URL
-const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
+// ── Resend email client ────────────────────────────────────────────────────────
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 // POST /api/register
 router.post('/register', async (req, res) => {
@@ -157,8 +147,8 @@ router.post('/forgot-password', async (req, res) => {
     const resetLink = `${process.env.CLIENT_URL}/reset-password?token=${resetToken}`;
 
     // Send the email
-    await transporter.sendMail({
-      from: `"HealthTracker" <${process.env.EMAIL_USER}>`,
+    await resend.emails.send({
+      from: 'HealthTracker <onboarding@resend.dev>',
       to: user.email,
       subject: 'Reset your HealthTracker password',
       html: `
