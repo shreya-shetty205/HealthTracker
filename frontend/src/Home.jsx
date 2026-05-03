@@ -28,6 +28,17 @@ export default function Home() {
         .feature-card { transition: all 0.28s cubic-bezier(0.4,0,0.2,1); }
         .stat-card:hover { transform: scale(1.05); }
         .stat-card { transition: all 0.2s ease; }
+        @media (max-width: 640px) {
+          .home-nav-links { display: none !important; }
+          .home-nav-login { display: none !important; }
+          .home-nav-register { font-size: 0.8rem !important; padding: 7px 14px !important; }
+          .home-hero-content { padding: 0 20px !important; max-width: 100% !important; }
+          .home-hero-btns { flex-direction: column !important; align-items: stretch !important; }
+          .home-hero-btns a { text-align: center !important; }
+          .home-hero-stats { gap: 16px !important; flex-wrap: wrap !important; }
+          .home-cta-btns { flex-direction: column !important; align-items: center !important; }
+          .home-section { padding: 48px 16px !important; }
+        }
       `}</style>
 
       {/* ── Navbar ── */}
@@ -37,14 +48,14 @@ export default function Home() {
             <div style={S.logoIcon}>🥗</div>
             <span style={S.logoText}>HealthTracker</span>
           </div>
-          <div style={S.navLinks}>
+          <div style={S.navLinks} className="home-nav-links">
             <a href="#features" className="nav-link" style={S.navLink}>Features</a>
             <a href="#how" className="nav-link" style={S.navLink}>How it works</a>
             <a href="#testimonials" className="nav-link" style={S.navLink}>Reviews</a>
           </div>
           <div style={S.navCtas}>
-            <Link to="/login" style={S.navLogin}>Sign in</Link>
-            <Link to="/register" style={S.navRegister} className="hero-cta">Get Started Free</Link>
+            <Link to="/login" style={S.navLogin} className="home-nav-login">Sign in</Link>
+            <Link to="/register" style={S.navRegister} className="hero-cta home-nav-register">Get Started Free</Link>
           </div>
         </div>
       </nav>
@@ -52,7 +63,7 @@ export default function Home() {
       {/* ── Hero ── */}
       <section style={{ ...S.hero, backgroundImage: `url(${HERO_BG})` }}>
         <div style={S.heroOverlay} />
-        <div style={S.heroContent}>
+        <div style={S.heroContent} className="home-hero-content">
           <div style={S.heroBadge}>🌿 Smart Nutrition Tracking</div>
           <h1 style={S.heroTitle}>
             Eat Smarter,<br/>
@@ -61,7 +72,7 @@ export default function Home() {
           <p style={S.heroSub}>
             Log meals, track protein, detect allergy risks, and get personalized AI insights — all in one beautiful app.
           </p>
-          <div style={S.heroBtns}>
+          <div style={S.heroBtns} className="home-hero-btns">
             <Link to="/register" className="hero-cta" style={S.heroCta}>
               🚀 Start Free Today
             </Link>
@@ -69,7 +80,7 @@ export default function Home() {
               Sign in →
             </Link>
           </div>
-          <div style={S.heroStats}>
+          <div style={S.heroStats} className="home-hero-stats">
             {[['10k+','Active Users'],['500k+','Meals Logged'],['4.9★','App Rating']].map(([n,l]) => (
               <div key={l} className="stat-card" style={S.heroStat}>
                 <div style={S.heroStatNum}>{n}</div>
