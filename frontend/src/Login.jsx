@@ -41,7 +41,7 @@ export default function Login() {
     if (!emailRegex.test(forgotEmail.trim())) { setForgotMsg({ type: 'error', text: 'Please enter a valid email.' }); return; }
     setForgotLoading(true); setForgotMsg(null);
     try {
-      const res = await axios.post('/api/forgot-password', { email: forgotEmail.trim().toLowerCase() });
+      const res = await axios.post(`${import.meta.env.VITE_API_URL}/api/forgot-password`, { email: forgotEmail.trim().toLowerCase() });
       setForgotMsg({ type: 'success', text: res.data?.message || `Reset link sent to ${forgotEmail.trim()}.` });
     } catch (err) {
       setForgotMsg({ type: 'error', text: err.response?.data?.message || 'Failed to send reset link.' });
