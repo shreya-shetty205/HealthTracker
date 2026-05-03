@@ -83,10 +83,15 @@ export default function Login() {
         @keyframes blob { 0%,100%{border-radius:60% 40% 70% 30%/50% 60% 40% 50%} 50%{border-radius:40% 60% 30% 70%/60% 40% 60% 40%} }
         .submit-btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(22,163,74,0.4) !important; }
         .submit-btn { transition: all 0.2s ease !important; }
+        @media (max-width: 768px) {
+          .login-left-panel { display: none !important; }
+          .login-right-panel { flex: 1 !important; width: 100% !important; padding-top: 32px !important; }
+          .login-form-wrap { padding: 24px 24px 32px !important; }
+        }
       `}</style>
 
       {/* Left panel: bg image */}
-      <div style={{ ...S.leftPanel, backgroundImage: `url(${BG})` }}>
+      <div style={{ ...S.leftPanel, backgroundImage: `url(${BG})` }} className="login-left-panel">
         <div style={S.leftOverlay} />
         <div style={S.leftContent}>
           <Link to="/" style={S.leftLogo}>
@@ -116,7 +121,7 @@ export default function Login() {
       </div>
 
       {/* Right panel: form */}
-      <div style={S.rightPanel}>
+      <div style={S.rightPanel} className="login-right-panel">
         <div style={S.rightBlob1} /><div style={S.rightBlob2} />
 
         {/* Insight banner */}

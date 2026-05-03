@@ -79,10 +79,15 @@ export default function Register() {
         @keyframes fadeIn { from{opacity:0;transform:translateY(12px)} to{opacity:1;transform:translateY(0)} }
         .submit-btn:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 24px rgba(22,163,74,0.4) !important; }
         .submit-btn { transition: all 0.2s ease !important; }
+        @media (max-width: 768px) {
+          .reg-left-panel { display: none !important; }
+          .reg-right-panel { flex: 1 !important; width: 100% !important; padding-top: 32px !important; }
+          .reg-form-wrap { padding: 24px 24px 32px !important; }
+        }
       `}</style>
 
       {/* Left panel: bg image */}
-      <div style={{ ...S.leftPanel, backgroundImage: `url(${BG})` }}>
+      <div style={{ ...S.leftPanel, backgroundImage: `url(${BG})` }} className="reg-left-panel">
         <div style={S.leftOverlay} />
         <div style={S.leftContent}>
           <Link to="/" style={S.leftLogo}>
@@ -110,7 +115,7 @@ export default function Register() {
       </div>
 
       {/* Right panel: form */}
-      <div style={S.rightPanel}>
+      <div style={S.rightPanel} className="reg-right-panel">
         <div style={S.rightBlob1}/><div style={S.rightBlob2}/>
 
         {/* Insight banner */}
